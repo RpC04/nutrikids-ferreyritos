@@ -65,7 +65,9 @@ function normalizeShift(value: string | null | undefined): CanonicalShift {
 function formatDateHuman(dateValue: string | null | undefined) {
     if (!dateValue) return 'Fecha pendiente'
 
-    const date = new Date(dateValue)
+    const [year, month, day] = dateValue.split('-')
+    const date = new Date(Number(year), Number(month) - 1, Number(day))
+    
     if (Number.isNaN(date.getTime())) return 'Fecha pendiente'
 
     return date.toLocaleDateString('es-ES', {
@@ -79,7 +81,9 @@ function formatDateHuman(dateValue: string | null | undefined) {
 function formatDateCompact(dateValue: string | null | undefined) {
     if (!dateValue) return 'Fecha pendiente'
 
-    const date = new Date(dateValue)
+    const [year, month, day] = dateValue.split('-')
+    const date = new Date(Number(year), Number(month) - 1, Number(day))
+    
     if (Number.isNaN(date.getTime())) return 'Fecha pendiente'
 
     return date.toLocaleDateString('es-ES', {
@@ -102,8 +106,12 @@ function getRenderedDateRange(settings: Partial<EventSettings>) {
         return formatDateCompact(startDateValue)
     }
 
-    const start = new Date(startDateValue)
-    const end = new Date(endDateValue)
+    const [sYear, sMonth, sDay] = startDateValue.split('-')
+    const start = new Date(Number(sYear), Number(sMonth) - 1, Number(sDay))
+
+    const [eYear, eMonth, eDay] = endDateValue.split('-')
+    const end = new Date(Number(eYear), Number(eMonth) - 1, Number(eDay))
+
     if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) {
         return `${formatDateCompact(startDateValue)} al ${formatDateCompact(endDateValue)}`
     }
@@ -118,8 +126,11 @@ function getRenderedDateRange(settings: Partial<EventSettings>) {
 }
 
 function getEventDayCount(startDateValue: string, endDateValue: string) {
-    const start = new Date(startDateValue)
-    const end = new Date(endDateValue)
+    const [sYear, sMonth, sDay] = startDateValue.split('-')
+    const start = new Date(Number(sYear), Number(sMonth) - 1, Number(sDay))
+
+    const [eYear, eMonth, eDay] = endDateValue.split('-')
+    const end = new Date(Number(eYear), Number(eMonth) - 1, Number(eDay))
 
     if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) return 1
 
