@@ -18,23 +18,6 @@ const playfairDisplay = Playfair_Display({
 export const metadata: Metadata = {
   title: 'NutriKids - Plataforma de Nutrición Infantil',
   description: 'Sistema web informativo para recetas, actividades y registro de participantes en NutriKids',
-  icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/apple-icon.png',
-  },
 }
 
 export default function RootLayout({
