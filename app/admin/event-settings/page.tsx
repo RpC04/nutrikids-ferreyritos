@@ -13,7 +13,9 @@ import type { EventSettings } from '@/lib/db/types/database'
 function formatDateLabel(dateValue: string | null | undefined) {
   if (!dateValue) return 'No configurada'
 
-  const date = new Date(dateValue)
+  const [year, month, day] = dateValue.split('-');
+  const date = new Date(Number(year), Number(month) - 1, Number(day));
+
   if (Number.isNaN(date.getTime())) return 'No configurada'
 
   return date.toLocaleDateString('es-ES', {
@@ -28,7 +30,9 @@ function formatDateRangeLabel(startDate: string, endDate: string, customLabel?: 
   if (customLabel?.trim()) return customLabel.trim()
   if (!startDate) return 'Sin fechas configuradas'
 
-  const start = new Date(startDate)
+  const [sYear, sMonth, sDay] = startDate.split('-');
+  const start = new Date(Number(sYear), Number(sMonth) - 1, Number(sDay));
+  
   const end = new Date(endDate || startDate)
 
   if (Number.isNaN(start.getTime())) return 'Sin fechas configuradas'
