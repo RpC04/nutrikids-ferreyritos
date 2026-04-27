@@ -18,7 +18,6 @@ const playfairDisplay = Playfair_Display({
 export const metadata: Metadata = {
   title: 'NutriKids - Plataforma de Nutrición Infantil',
   description: 'Sistema web informativo para recetas, actividades y registro de participantes en NutriKids',
-  generator: 'v0.app',
   icons: {
     icon: [
       {
