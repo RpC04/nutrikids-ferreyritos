@@ -243,18 +243,6 @@ export default function EventSettingsPage() {
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="display_date_label">Texto personalizado para fechas</Label>
-                <Input
-                  id="display_date_label"
-                  value={formData.display_date_label}
-                  onChange={(e) => setFormData({ ...formData, display_date_label: e.target.value })}
-                  placeholder="Ejemplo: 1 y 2 de mayo de 2026"
-                />
-                <p className="text-xs text-muted-foreground">
-                  Si lo dejas en blanco, la web genera el texto automáticamente según el rango
-                </p>
-              </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
@@ -277,18 +265,7 @@ export default function EventSettingsPage() {
                     onChange={(e) => setFormData({ ...formData, team_size: e.target.value })}
                   />
                 </div>
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="event-note">Nota interna</Label>
-                <Textarea
-                  id="event-note"
-                  value={`Texto renderizado actual: ${renderedDateLabel}`}
-                  readOnly
-                  rows={2}
-                  className="text-sm"
-                />
-              </div>
+              </div> 
 
               <Button type="submit" disabled={saving}>
                 {saving ? 'Guardando...' : 'Guardar Cambios'}
@@ -313,11 +290,7 @@ export default function EventSettingsPage() {
               <div>
                 <Label className="text-muted-foreground">Fecha de cierre</Label>
                 <p className="text-base font-semibold">{formatDateLabel(formData.end_date || formData.start_date)}</p>
-              </div>
-              <div>
-                <Label className="text-muted-foreground">Texto visible</Label>
-                <p className="text-base font-semibold">{renderedDateLabel}</p>
-              </div>
+              </div> 
               <div>
                 <Label className="text-muted-foreground">Equipo</Label>
                 <p className="text-base font-semibold">

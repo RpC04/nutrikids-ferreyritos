@@ -227,7 +227,7 @@ export default function RecipesAdminPage() {
                 />
               </div>
 
-              <div className="space-y-2">
+              {/*<div className="space-y-2">
                 <Label htmlFor="description">Descripción *</Label>
                 <Textarea
                   id="description"
@@ -236,7 +236,7 @@ export default function RecipesAdminPage() {
                   rows={2}
                   required
                 />
-              </div>
+              </div>*/}
 
               <div className="space-y-2">
                 <Label htmlFor="ingredients">Ingredientes *</Label>
@@ -296,7 +296,7 @@ export default function RecipesAdminPage() {
                 />
               </div>
 
-              <div className="space-y-2">
+              {/* <div className="space-y-2">
                 <Label htmlFor="image_url">URL de Imagen</Label>
                 <Input
                   id="image_url"
@@ -304,7 +304,7 @@ export default function RecipesAdminPage() {
                   value={formData.image_url}
                   onChange={(e) => setFormData({ ...formData, image_url: e.target.value })}
                 />
-              </div>
+              </div>*/}
 
               <div className="flex gap-2 justify-end pt-4">
                 <Button type="button" variant="outline" onClick={handleCloseDialog}>
@@ -338,7 +338,7 @@ export default function RecipesAdminPage() {
                   <TableRow>
                     <TableHead>Título</TableHead>
                     <TableHead className="hidden sm:table-cell">Tiempo / Porciones</TableHead>
-                    <TableHead className="hidden md:table-cell">Descripción</TableHead>
+                    <TableHead className="hidden md:table-cell">Preparación</TableHead>
                     <TableHead className="w-24">Acciones</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -356,9 +356,9 @@ export default function RecipesAdminPage() {
                           : 'Sin porciones'}
                       </TableCell>
                       <TableCell className="hidden md:table-cell text-sm">
-                        {recipe.description.length > 50
-                          ? `${recipe.description.substring(0, 50)}...`
-                          : recipe.description}
+                        {recipe.preparation.length > 50
+                          ? `${recipe.preparation.substring(0, 50)}...`
+                          : recipe.preparation}
                       </TableCell>
                       <TableCell>
                         <div className="flex gap-2">

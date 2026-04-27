@@ -93,31 +93,24 @@ function formatDateCompact(dateValue: string | null | undefined) {
     })
 }
 
-function getRenderedDateRange(settings: Partial<EventSettings>) {
-    if (settings.display_date_label?.trim()) {
-        return settings.display_date_label.trim()
-    }
+function getRenderedDateRange(settings: Partial<EventSettings>) { 
 
     const startDateValue = settings.start_date || settings.event_date
     const endDateValue = settings.end_date || settings.start_date || settings.event_date
 
     if (!startDateValue) return 'Fechas por confirmar'
-    if (!endDateValue || startDateValue === endDateValue) {
-        return formatDateCompact(startDateValue)
-    }
-
+    
     const [sYear, sMonth, sDay] = startDateValue.split('-')
     const start = new Date(Number(sYear), Number(sMonth) - 1, Number(sDay))
 
-    const [eYear, eMonth, eDay] = endDateValue.split('-')
+    const [eYear, eMonth, eDay] = (endDateValue || startDateValue).split('-')
     const end = new Date(Number(eYear), Number(eMonth) - 1, Number(eDay))
 
-    if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) {
-        return `${formatDateCompact(startDateValue)} al ${formatDateCompact(endDateValue)}`
+    if (startDateValue === endDateValue) {
+        return formatDateCompact(startDateValue)
     }
 
-    const sameMonth = start.getMonth() === end.getMonth() && start.getFullYear() === end.getFullYear()
-    if (sameMonth) {
+    if (start.getMonth() === end.getMonth() && start.getFullYear() === end.getFullYear()) {
         const monthName = start.toLocaleDateString('es-ES', { month: 'long' })
         return `${start.getDate()} y ${end.getDate()} de ${monthName} de ${start.getFullYear()}`
     }
@@ -215,14 +208,13 @@ export default function HomePage() {
                 const data = await response.json()
 
                 if (response.ok && data.success && data.data) {
-                    const startDate = data.data.start_date || data.data.event_date || defaultStartDate
-                    const endDate = data.data.end_date || data.data.event_date || defaultEndDate
+                    const startDate = data.data.start_date || data.data.event_date
+                    const endDate = data.data.end_date || startDate
 
                     setEventSettings({
                         ...data.data,
                         start_date: startDate,
                         end_date: endDate,
-                        event_date: data.data.event_date || startDate,
                         display_date_label: data.data.display_date_label || '',
                         team_name: data.data.team_name || 'Equipo universitario independiente NutriKids',
                         team_size: typeof data.data.team_size === 'number' ? data.data.team_size : 31,

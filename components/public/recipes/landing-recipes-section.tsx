@@ -47,6 +47,8 @@ export function LandingRecipesSection({
                 <div className="nk-receta-body">
                   <div className="nk-receta-ingredientes">Ingredientes principales</div>
                   <p>{recipe.ingredients}</p>
+                  
+                  <div className="nk-receta-ingredientes">Preparación</div>
                   <p className="nk-receta-preparation">{recipe.preparation}</p>
                   <div className="nk-receta-tip">
                     💡 {recipe.notes || recipe.description || 'Acompana con alimentos ricos en vitamina C para mejorar la absorcion del hierro.'}

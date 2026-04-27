@@ -9,7 +9,7 @@ import { logoutAdmin } from '@/lib/auth/actions'
 const navItems = [
   { href: '/admin/dashboard', label: 'Dashboard', icon: Settings },
   { href: '/admin/recipes', label: 'Recetas', icon: BookOpen },
-  { href: '/admin/activities', label: 'Actividades', icon: Calendar },
+  //{ href: '/admin/activities', label: 'Actividades', icon: Calendar },
   { href: '/admin/registrations', label: 'Registros', icon: Users },
   { href: '/admin/event-settings', label: 'Configuración', icon: FileText },
 ]
